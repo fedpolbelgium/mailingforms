@@ -3,7 +3,7 @@
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </head>
     <body>
-        <h1>1.1</h1>
+        <h1>1.2</h1>
         <form action="https://action.spike.email/103951/Subscriptions/Subscribe" id="spkForm" method="post" onSubmit="return submitUserForm();">
             <div class="g-recaptcha" data-sitekey="6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T" data-callback="verifyCaptcha"></div>
             <div id="g-recaptcha-error"></div>
@@ -19,6 +19,7 @@
                 if(response.length == 0){
                     document.getElementById("g-recaptcha-error").innerHTML = 
                         "<span style='color: red;'>Nuh Uh</span>";
+                    return false;
                 }
                 return true;
             }
