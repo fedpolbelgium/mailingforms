@@ -4,14 +4,28 @@
     </head>
     <body>
         <h1>1.0</h1>
-        <form action="https://action.spike.email/103951/Subscriptions/Subscribe" id="spkForm" method="post">
-            <div class="g-recaptcha" data-sitekey="6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T"></div>
+        <form action="https://action.spike.email/103951/Subscriptions/Subscribe" id="spkForm" method="post" onSubmit="return submitUserForm();">
+            <div class="g-recaptcha" data-sitekey="6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T" data-callback="verifyCaptcha"></div>
+            <div id="g-recaptcha-error"></div>
             <input name="subscription" value="acfbe801-87f6-413d-b26f-29581b8ba1d7" type="hidden" />
             <input name="callbackurl" value="https://fedpolbelgium.github.io/mailingforms/" type='hidden' />
             <p><label for="emailaddress">E-mail:</label><input name="emailaddress" id="emailaddress" value="" type="text" /></p>
             <p><button type="submit" value="Submit">Submit</button></p>    
         </form>
         
-        
+        <script>
+            function submitUserForm(){
+                var response = grecaptcha.getResponse();
+                if(response.length == 0){
+                    document.getElementById("g-recaptcha-error").innerHTML = 
+                        "<span style='color: red;'>Nuh Uh</span>";
+                }
+                return true;
+            }
+            
+            function verifyCaptcha() {
+                document.getElementById("g-recaptcha-error").innerHTML = "";
+            }
+        </script>        
     </body>
 </html>
