@@ -1,0 +1,19 @@
+<html lang="en">
+    <head></head>
+    <body>
+        <form action="https://action.spike.email/103951/Subscriptions/Subscribe" id="spkForm" method="post">
+            <div class="g-recaptcha" data-sitekey="6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T"></div>
+            <input name="subscription" value="acfbe801-87f6-413d-b26f-29581b8ba1d7" type="hidden" />
+            <input name="callbackurl" value="https://fedpolbelgium.github.io/mailingforms/" type='hidden' />
+            <p><label for="emailaddress">E-mail:</label><input name="emailaddress" id="emailaddress" value="" type="text" /></p>
+            <p><button type="submit" value="Submit" /></p>    
+        </form>
+        
+        <script src="https://www.google.com/recaptcha/api.js?render=6Ld-1JkUAAAAAAu7Vl3U1t1qf6R6zrg4v6gonqoe"></script>
+        <script>
+            grecaptcha.ready(function() {
+                grecaptcha.execute('reCAPTCHA_site_key', {action: 'homepage'}).then(function(token) {});
+            });
+        </script>
+    </body>
+</html>
