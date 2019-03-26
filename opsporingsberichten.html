@@ -86,11 +86,11 @@
             <div class="g-recaptcha" data-sitekey="6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T" data-callback="verifyCaptcha"></div>
 
             <!--<p><button id="btnSubmit" type="submit" value="Submit" disabled="disabled">Submit</button></p>-->
-            <p><button id="btnSubmit" type="submit" value="Submit" class="btn btn-primary">Verzenden</button></p>
+            <p><button id="btnSubmit" type="button" value="Submit" class="btn btn-primary">Verzenden</button></p>
             
             
         </form>
-        <h1>2.4</h1>
+        <h1>2.5</h1>
         
     </div>
       
@@ -103,7 +103,6 @@
             $("#emailaddress").keyup(function(){
                 if($("#emailaddress").val().indexOf("@") < 0 || $("#emailaddress").val().indexOf(".") < 0){
                     $("#email-error").fadeIn(1000);
-                    //$("#btnSubmit").attr('disabled','disabled');
                 }
                 else {
                     $("#email-error").fadeOut(1000);  
@@ -111,22 +110,14 @@
             });
             
             $("#btnSubmit").click(function(){
-                alert(grecaptcha.getResponse());              
+                    var rcres = grecaptcha.getResponse();
+                      if(rcres.length){
+                        grecaptcha.reset();
+                        $("#g-recaptcha-error").fadeOut(1000);
+                      }else{
+                        $("#g-recaptcha-error").fadeIn(1000);
+                      }              
             });
-            
-            function submitUserForm(){
-                var response = grecaptcha.getResponse();
-                if(response.length == 0){
-                    $("#g-recaptcha-error").fadeIn(1000);
-                    return false;
-                }
-                $("#g-recaptcha-error").fadeOut(1000);
-                return true;
-            }
-            
-        function verifyCaptcha() {
-            document.getElementById("g-recaptcha-error").innerHTML = "";
-        }
         });
     </script>
 
