@@ -70,7 +70,7 @@
         </div>
         
         <div id="email-error" class="alert alert-danger" role="alert">
-            [MAIL ERROR]
+            E-mail adres moet "@" en "." bevatten.
         </div>
         
         <form action="https://action.spike.email/103951/Subscriptions/Subscribe" id="spkForm" method="post" onSubmit="return submitUserForm();">
@@ -90,7 +90,7 @@
             
             
         </form>
-        <h1>2.1</h1>
+        <h1>2.2</h1>
         
     </div>
       
@@ -105,12 +105,11 @@
             
             $("#emailaddress").keyup(function(){
                 if($("#emailaddress").val().indexOf("@") < 0 || $("#emailaddress").val().indexOf(".") < 0){
-                    $("#email-error").fadeIn();
+                    $("#email-error").fadeIn(1000);
                     //$("#btnSubmit").attr('disabled','disabled');
                 }
                 else {
-                    $("#email-error").html("");
-                    $("#btnSubmit").removeAttr("disabled");  
+                    $("#email-error").fadeOut(1000);  
                 }                    
             });
         });
