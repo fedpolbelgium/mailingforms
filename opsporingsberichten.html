@@ -9,41 +9,104 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <style>
+        body {
+            background-color: #339;
+        }
+        
+        div.container {
+            background-color: white;
+            border-radius: 2em;
+            margin-top: 12em;
+            padding: 2em 0 2em 0;
+        }
+        
+        div.container h2, p, div, img {
+            margin: 25px 0 35px 0;
+        }
+        
+        h1, h2, p { text-align: center; }
+        
+        h1, h2 { color: #339; }
+        
+        div.g-recaptcha { margin: 0 auto; width: 304px; }
+        
+        img#logo {
+            max-width: 120px;
+        }
+        
+        label {
+            font-weight: 500;
+            margin-right: 10px;
+        }
+        
+        button#btnSubmit {
+            background-color: #339;
+            border-color: #339;
+            font-weight: 500;
+            width: 12em;
+        }
+        
+        input#emailaddress { width: 15em; }
+        
+        /*
+        div#g-recaptcha-error, div#email-error { display: none; }
+        */
+        
+        div#g-recaptcha-error, div#email-error { display: none; margin: 10px auto; width: 30em; }
+    </style>
+      
     <title>Hello, world!</title>
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <div class="container">        
+        <h1 class=""><img id="logo" src="i/logoN.png" /></h1>
+        <h2>Opsporingsberichten</h2>
+        <div ></div>
+        <div ></div>
+        
+        <div id="g-recaptcha-error" class="alert alert-danger" role="alert">
+            [CAPTCHA ERROR]
+        </div>
+        
+        <div id="email-error" class="alert alert-danger" role="alert">
+            [MAIL ERROR]
+        </div>
+        
+        <form action="https://action.spike.email/103951/Subscriptions/Subscribe" id="spkForm" method="post" onSubmit="return submitUserForm();">
+            <input name="subscription" value="acfbe801-87f6-413d-b26f-29581b8ba1d7" type="hidden" />
+            <input name="callbackurl" value="https://fedpolbelgium.github.io/mailingforms/opsporingsberichten-subscribed.html" type='hidden' />
+            <input name="metadata.FormUrl" id="FormUrl" type="hidden" value="https://fedpolbelgium.github.io/mailingforms/" />
+            <input name="metadata.FormVersion" id="FormVersion" type="hidden" value="1.0" />
+            <input name="metadata.PrivacyUrl" id="PrivacyUrl" type="hidden" value="https://www.politie.be/5998/nl/privacy" />
+            <input name="metadata.PrivacyVersion" id="PrivacyVersion" type="hidden" value="1.0" />
+
+            <p><label for="emailaddress">E-mail:</label><input name="emailaddress" id="emailaddress" value="" type="text" /></p>
+
+            <div class="g-recaptcha" data-sitekey="6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T" data-callback="verifyCaptcha"></div>
+
+            <!--<p><button id="btnSubmit" type="submit" value="Submit" disabled="disabled">Submit</button></p>-->
+            <p><button id="btnSubmit" type="submit" value="Submit" class="btn btn-primary">Verzenden</button></p>
+            
+            
+        </form>
+        
+        
+    </div>
       
       
       
-    <h1>1.9</h1>
-        
-    <div id="g-recaptcha-error"></div>
-    <div id="email-error"></div>
-        
-    <form action="https://action.spike.email/103951/Subscriptions/Subscribe" id="spkForm" method="post" onSubmit="return submitUserForm();">
-        <input name="subscription" value="acfbe801-87f6-413d-b26f-29581b8ba1d7" type="hidden" />
-        <input name="callbackurl" value="https://fedpolbelgium.github.io/mailingforms/opsporingsberichten-subscribed.html" type='hidden' />
-        <input name="metadata.FormUrl" id="FormUrl" type="hidden" value="https://fedpolbelgium.github.io/mailingforms/" />
-        <input name="metadata.FormVersion" id="FormVersion" type="hidden" value="1.0" />
-        <input name="metadata.PrivacyUrl" id="PrivacyUrl" type="hidden" value="https://www.politie.be/5998/nl/privacy" />
-        <input name="metadata.PrivacyVersion" id="PrivacyVersion" type="hidden" value="1.0" />
-            
-        <p><label for="emailaddress">E-mail:</label><input name="emailaddress" id="emailaddress" value="" type="text" /></p>
-        
-        <div class="g-recaptcha" data-sitekey="6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T" data-callback="verifyCaptcha"></div>
-        
-        <p><button id="btnSubmit" type="submit" value="Submit" disabled="disabled">Submit</button></p>
-            
-            
-    </form>
+    
         
     <script>
         $(document).ready(function(){
+            
+            
+            
             $("#emailaddress").keyup(function(){
                 if($("#emailaddress").val().indexOf("@") < 0 || $("#emailaddress").val().indexOf(".") < 0){
-                    $("#email-error").html("<h1>Nuh Uh!</h1>");
-                    $("#btnSubmit").attr('disabled','disabled');
+                    $("#email-error").fadeIn(300);
+                    //$("#btnSubmit").attr('disabled','disabled');
                 }
                 else {
                     $("#email-error").html("");
@@ -58,7 +121,7 @@
             var response = grecaptcha.getResponse();
             if(response.length == 0){
                 document.getElementById("g-recaptcha-error").innerHTML = 
-                    "<span style='color: red;'>Nuh Uh</span>";
+                    "Nuh Uh";
                 return false;
             }
             return true;
