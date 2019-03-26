@@ -1,63 +1,77 @@
+<!doctype html>
 <html lang="en">
-    <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    </head>
-    <body>
-        <h1>1.5</h1>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+      
+      
+      
+    <h1>1.6</h1>
         
-        <div id="g-recaptcha-error"></div>
-        <div id="email-error"></div>
+    <div id="g-recaptcha-error"></div>
+    <div id="email-error"></div>
         
-        <form action="https://action.spike.email/103951/Subscriptions/Subscribe" id="spkForm" method="post" onSubmit="return submitUserForm();">
+    <form action="https://action.spike.email/103951/Subscriptions/Subscribe" id="spkForm" method="post" onSubmit="return submitUserForm();">
+        <input name="subscription" value="acfbe801-87f6-413d-b26f-29581b8ba1d7" type="hidden" />
+        <input name="callbackurl" value="https://fedpolbelgium.github.io/mailingforms/opsporingsberichten-subscribed.html" type='hidden' />
+        <input name="metadata.FormUrl" id="FormUrl" type="hidden" value="https://fedpolbelgium.github.io/mailingforms/" />
+        <input name="metadata.FormVersion" id="FormVersion" type="hidden" value="1.0" />
+        <input name="metadata.PrivacyUrl" id="PrivacyUrl" type="hidden" value="https://www.politie.be/5998/nl/privacy" />
+        <input name="metadata.PrivacyVersion" id="PrivacyVersion" type="hidden" value="1.0" />
             
-            <input name="subscription" value="acfbe801-87f6-413d-b26f-29581b8ba1d7" type="hidden" />
-            <input name="callbackurl" value="https://fedpolbelgium.github.io/mailingforms/opsporingsberichten-subscribed.html" type='hidden' />
-            <input name="metadata.FormUrl" id="FormUrl" type="hidden" value="https://fedpolbelgium.github.io/mailingforms/" />
-            <input name="metadata.FormVersion" id="FormVersion" type="hidden" value="1.0" />
-            <input name="metadata.PrivacyUrl" id="PrivacyUrl" type="hidden" value="https://www.politie.be/5998/nl/privacy" />
-            <input name="metadata.PrivacyVersion" id="PrivacyVersion" type="hidden" value="1.0" />
-            
-            <p><label for="emailaddress">E-mail:</label><input name="emailaddress" id="emailaddress" value="" type="text" /></p>
-            
-            <div class="g-recaptcha" data-sitekey="6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T" data-callback="verifyCaptcha"></div>
-            
-            <p><button id="btnSubmit" type="submit" value="Submit" disabled="disabled">Submit</button></p>
-            
-            
-        </form>
+        <p><label for="emailaddress">E-mail:</label><input name="emailaddress" id="emailaddress" value="" type="text" /></p>
         
-        <script>
-            $(document).ready(function(){
-                $("#emailaddress").keyup(function(){
-                    if($("#emailaddress").val().indexOf("@") < 0 || $("#emailaddress").val().indexOf(".") < 0){
-                        
-                        $("#email-error").html("<h1>Nuh Uh!</h1>");
-                        $("#btnSubmit").attr('disabled','disabled');
-                        
-                    }
-                    else {
-                        $("#email-error").html("");
-                        $("#btnSubmit").removeAttr("disabled");  
-                    }                    
-                });
-            });
+        <div class="g-recaptcha" data-sitekey="6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T" data-callback="verifyCaptcha"></div>
+        
+        <p><button id="btnSubmit" type="submit" value="Submit" disabled="disabled">Submit</button></p>
             
             
-            
-            function submitUserForm(){
-                var response = grecaptcha.getResponse();
-                if(response.length == 0){
-                    document.getElementById("g-recaptcha-error").innerHTML = 
-                        "<span style='color: red;'>Nuh Uh</span>";
-                    return false;
+    </form>
+        
+    <script>
+        $(document).ready(function(){
+            $("#emailaddress").keyup(function(){
+                if($("#emailaddress").val().indexOf("@") < 0 || $("#emailaddress").val().indexOf(".") < 0){
+                    $("#email-error").html("<h1>Nuh Uh!</h1>");
+                    $("#btnSubmit").attr('disabled','disabled');
                 }
-                return true;
-            }
+                else {
+                    $("#email-error").html("");
+                    $("#btnSubmit").removeAttr("disabled");  
+                }                    
+            });
+        });
             
-            function verifyCaptcha() {
-                document.getElementById("g-recaptcha-error").innerHTML = "";
+            
+            
+        function submitUserForm(){
+            var response = grecaptcha.getResponse();
+            if(response.length == 0){
+                document.getElementById("g-recaptcha-error").innerHTML = 
+                    "<span style='color: red;'>Nuh Uh</span>";
+                return false;
             }
-        </script>        
-    </body>
+            return true;
+        }
+            
+        function verifyCaptcha() {
+            document.getElementById("g-recaptcha-error").innerHTML = "";
+        }
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
 </html>
