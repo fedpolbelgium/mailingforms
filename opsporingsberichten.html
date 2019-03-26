@@ -1,19 +1,50 @@
 <html lang="en">
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </head>
     <body>
-        <h1>1.2</h1>
+        <h1>1.3</h1>
+        
+        <div id="g-recaptcha-error"></div>
+        <div id="email-error"></div>
+        
         <form action="https://action.spike.email/103951/Subscriptions/Subscribe" id="spkForm" method="post" onSubmit="return submitUserForm();">
-            <div class="g-recaptcha" data-sitekey="6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T" data-callback="verifyCaptcha"></div>
-            <div id="g-recaptcha-error"></div>
+            
             <input name="subscription" value="acfbe801-87f6-413d-b26f-29581b8ba1d7" type="hidden" />
             <input name="callbackurl" value="https://fedpolbelgium.github.io/mailingforms/" type='hidden' />
+            <input name="metadata.FormUrl" id="FormUrl" type="hidden" value="https://www.mijndomein.nl/inschrijfformulier/" />
+            <input name="metadata.FormVersion" id="FormVersion" type="hidden" value="1.0" />
+            <input name="metadata.PrivacyUrl" id="PrivacyUrl" type="hidden" value="https://www.mijndomein.nl/privacy-verklaring" />
+            <input name="metadata.PrivacyVersion" id="PrivacyVersion" type="hidden" value="3.1a" />
+            
             <p><label for="emailaddress">E-mail:</label><input name="emailaddress" id="emailaddress" value="" type="text" /></p>
-            <p><button type="submit" value="Submit">Submit</button></p>    
+            
+            <div class="g-recaptcha" data-sitekey="6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T" data-callback="verifyCaptcha"></div>
+            
+            <p><button id="btnSubmit" type="submit" value="Submit" disabled="disabled">Submit</button></p>
+            
+            
         </form>
         
         <script>
+            $(document).ready(function(){
+                $("#emailaddress").keyup(function(){
+                    if($("#emailaddress").val().indexOf("@") < 0 || $("#emailaddress").val().indexOf(".") < 0){
+                        
+                        $("#email-error").html("<h1>Nuh Uh!</h1>");
+                        $("#btnSubmit").attr('disabled','disabled');
+                        
+                    }
+                    else {
+                        $("#email-error").html("");
+                        $("#btnSubmit").removeAttr("disabled");  
+                    }                    
+                });
+            });
+            
+            
+            
             function submitUserForm(){
                 var response = grecaptcha.getResponse();
                 if(response.length == 0){
