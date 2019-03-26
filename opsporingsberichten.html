@@ -90,7 +90,7 @@
             
             
         </form>
-        <h1>2.3</h1>
+        <h1>2.4</h1>
         
     </div>
       
@@ -108,6 +108,10 @@
                 else {
                     $("#email-error").fadeOut(1000);  
                 }                    
+            });
+            
+            $("#btnSubmit").click(function(){
+                alert(grecaptcha.getResponse());              
             });
             
             function submitUserForm(){
