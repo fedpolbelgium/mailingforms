@@ -61,7 +61,7 @@
   </head>
   <body>
     <div class="container">
-        <h1>5</h1>
+        <h1>6</h1>
         <h1 class=""><img id="logo" src="i/logoN.png" /></h1>
         <h2>Opsporingsberichten</h2>
         
@@ -106,13 +106,13 @@
         
         var verifyCallback = function(response) {
             captchaResp = true;
-            formCheck();
+            formCheck(response);
         };
                 
         $(document).ready(function(){
-            $("#emailaddress").keyup(function(){ formCheck(); });
+            $("#emailaddress").keyup(function(){ formCheck(""); });
             
-            $("#terms").change(function(){ formCheck(); });
+            $("#terms").change(function(){ formCheck(""); });
             
             $("#btnSubmit").click(function(){
                 event.preventDefault();
@@ -120,7 +120,10 @@
                 
             });
             
-            function formCheck(){
+            function formCheck(response){
+                
+                if(response != "") alert(response);
+                
                 if($("#emailaddress").val().indexOf("@") > -1 && $("#emailaddress").val().indexOf(".") > -1 && $("#terms").prop("checked") && captchaResp == true) $("#btnSubmit").prop('disabled', false);
                 else $("#btnSubmit").prop('disabled', true);
             }
