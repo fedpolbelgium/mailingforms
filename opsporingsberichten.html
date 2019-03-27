@@ -79,12 +79,14 @@
             <input name="metadata.PrivacyUrl" id="PrivacyUrl" type="hidden" value="https://www.politie.be/5998/nl/privacy" />
             <input name="metadata.PrivacyVersion" id="PrivacyVersion" type="hidden" value="1.0" />
 
-            <p><label for="emailaddress">E-mail:</label><input name="emailaddress" id="emailaddress" value="" type="text" /></p>
+            <p><label for="emailaddress">E-mail:</label><input name="emailaddress" id="emailaddress" value="" type="text" onkeyup="valEmail();" /></p>
 
-            <div class="g-recaptcha" data-sitekey="6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T" data-callback="verifyCaptcha"></div>
-
+            <div class="g-recaptcha" data-sitekey="6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T" data-callback="verifyCaptcha" onclick="valEmail();"></div>
+            
+            <p><input id="terms" type="checkbox" onchange="valEmail();" /> Ja, ik wens mij in te schrijven en ga akkoord <br />met de <a href="https://www.politie.be/5998/nl/privacy" target="_blank" style="font-weight:600">Privacy statement</a> en de <a href="https://www.politie.be/5998/nl/disclaimer" target="_blank" style="font-weight:600">Disclaimer</a>. </p>
+                        
             <!--<p><button id="btnSubmit" type="submit" value="Submit" disabled="disabled">Submit</button></p>-->
-            <p><button id="btnSubmit" type="submit" value="Submit" class="btn btn-primary">Verzenden</button></p>
+            <p><button id="btnSubmit" type="submit" value="Submit" class="btn btn-primary" disabled="disabled">Verzenden</button></p>
             
             
         </form>        
@@ -95,10 +97,43 @@
     
         
     <script>
+        function valEmail(){
+			var checkBox = document.getElementById("terms").checked
+            //var rcres = grecaptcha.getResponse(); && rcres.length
+			
+			if(document.getElementById("emailaddress").value.indexOf("@") > -1 && document.getElementById("emailaddress").value.indexOf(".") > -1 && checkBox == true && && rcres.length){
+				document.getElementById("btnSubmit").disabled = false;
+                grecaptcha.reset();
+                //$("#g-recaptcha-error").fadeOut(1000);
+			}
+			else document.getElementById("btnSubmit").disabled = true;
+		
+		
+        
+        
+        
+        
+                      //if(rcres.length){
+                    //    grecaptcha.reset();
+                      //  $("#g-recaptcha-error").fadeOut(1000);
+                      //}else{
+                    //    event.preventDefault();
+                      //  $("#g-recaptcha-error").fadeIn(1000);
+                      //}        
+        
+        
+        }
+        
+        
+            
+        
+        
+        /*
         $(document).ready(function(){            
             $("#emailaddress").keyup(function(){
                 if($("#emailaddress").val().indexOf("@") < 0 || $("#emailaddress").val().indexOf(".") < 0){
                     $("#email-error").fadeIn(1000);
+                    
                 }
                 else {
                     $("#email-error").fadeOut(1000);  
@@ -117,12 +152,15 @@
             });
             
             $("#btnSubmit").mouseover(function(){
+                event.preventDefault();
+                
                 var rcres = grecaptcha.getResponse();
                 if(rcres.length){
                     $("#g-recaptcha-error").fadeOut(1000);
                 }
             });
         });
+        */
     </script>
 
     <!-- Optional JavaScript -->
