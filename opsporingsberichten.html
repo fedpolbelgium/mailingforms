@@ -61,7 +61,7 @@
   </head>
   <body>
     <div class="container">
-        <h1>4</h1>
+        <h1>5</h1>
         <h1 class=""><img id="logo" src="i/logoN.png" /></h1>
         <h2>Opsporingsberichten</h2>
         
@@ -121,7 +121,7 @@
             });
             
             function formCheck(){
-                if($("#emailaddress").val().indexOf("@") > -1 && $("#emailaddress").val().indexOf(".") > -1 && $("#terms").prop("checked") && captchaResp) $("#btnSubmit").prop('disabled', false);
+                if($("#emailaddress").val().indexOf("@") > -1 && $("#emailaddress").val().indexOf(".") > -1 && $("#terms").prop("checked") && captchaResp == true) $("#btnSubmit").prop('disabled', false);
                 else $("#btnSubmit").prop('disabled', true);
             }
         });
