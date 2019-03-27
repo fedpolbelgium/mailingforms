@@ -102,7 +102,7 @@
             //var rcres = grecaptcha.getResponse(); && rcres.length
 			var rcres = grecaptcha.getResponse();
             
-			if(document.getElementById("emailaddress").value.indexOf("@") > -1 && document.getElementById("emailaddress").value.indexOf(".") > -1 && checkBox == true && && rcres.length){
+			if(document.getElementById("emailaddress").value.indexOf("@") > -1 && document.getElementById("emailaddress").value.indexOf(".") > -1 && checkBox == true && rcres.length){
 				document.getElementById("btnSubmit").disabled = false;
                 grecaptcha.reset();
                 //$("#g-recaptcha-error").fadeOut(1000);
