@@ -61,7 +61,7 @@
   </head>
   <body>
     <div class="container">
-        <h1>8</h1>
+        <h1>9</h1>
         <h1 class=""><img id="logo" src="i/logoN.png" /></h1>
         <h2>Opsporingsberichten</h2>
         
@@ -94,8 +94,7 @@
         </form>        
     </div>        
     <script>
-        $(document).ready(function(){
-            var srcCaptcha;
+        var srcCaptcha;
         var onloadCallback = function() {
             srcCaptcha = grecaptcha.render('captcha', {
                 'sitekey' : '6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T',
@@ -107,11 +106,10 @@
         
         var verifyCallback = function(response) {
             //if(alert(response);
-            $("#btnSubmit").prop('disabled', false);
+            document.getElementById("btnSubmit").disabled = false;
         };
-            
-            
-            
+                
+        $(document).ready(function(){
             $("#emailaddress").keyup(function(){ formCheck(); });
             
             $("#terms").change(function(){ formCheck(); });
