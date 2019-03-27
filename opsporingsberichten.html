@@ -61,7 +61,7 @@
   </head>
   <body>
     <div class="container">
-        <h1>13</h1>
+        <h1>15</h1>
         <h1 class=""><img id="logo" src="i/logoN.png" /></h1>
         <h2>Opsporingsberichten</h2>
         
@@ -81,11 +81,11 @@
             <input name="metadata.PrivacyUrl" id="PrivacyUrl" type="hidden" value="https://www.politie.be/5998/nl/privacy" />
             <input name="metadata.PrivacyVersion" id="PrivacyVersion" type="hidden" value="1.0" />
 
-            <p><label for="emailaddress">E-mail:</label><input name="emailaddress" id="emailaddress" value="" type="text" /></p>
+            <p><label for="emailaddress">E-mail:</label><input name="emailaddress" id="emailaddress" value="" type="text" onkeyup="formCheck();" /></p>
 
             <div id="captcha"></div>
             
-            <p><input id="terms" type="checkbox" /> Ja, ik wens mij in te schrijven en ga akkoord <br />met de <a href="https://www.politie.be/5998/nl/privacy" target="_blank" style="font-weight:600">Privacy statement</a> en de <a href="https://www.politie.be/5998/nl/disclaimer" target="_blank" style="font-weight:600">Disclaimer</a>. </p>
+            <p><input id="terms" type="checkbox" onchange="formCheck();" /> Ja, ik wens mij in te schrijven en ga akkoord <br />met de <a href="https://www.politie.be/5998/nl/privacy" target="_blank" style="font-weight:600">Privacy statement</a> en de <a href="https://www.politie.be/5998/nl/disclaimer" target="_blank" style="font-weight:600">Disclaimer</a>. </p>
                         
             <!--<p><button id="btnSubmit" type="submit" value="Submit" disabled="disabled">Submit</button></p>-->
             <p><button id="btnSubmit" type="submit" value="getResponse" class="btn btn-primary" disabled="disabled">Verzenden</button></p>
