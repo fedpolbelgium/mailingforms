@@ -1,11 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="js/jquery-2.2.4.min.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+      
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -29,7 +30,7 @@
         
         h1, h2 { color: #339; }
         
-        div.g-recaptcha { margin: 0 auto; width: 304px; }
+        div#captcha { margin: 0 auto; width: 304px; }
         
         img#logo {
             max-width: 120px;
@@ -46,83 +47,57 @@
             font-weight: 500;
             width: 12em;
         }
-        
-        input#emailaddress { width: 15em; }
-        
-        /*
-        div#g-recaptcha-error, div#email-error { display: none; }
-        */
-        
-        div#g-recaptcha-error, div#email-error { display: none; margin: 10px auto; width: 30em; }
     </style>
       
-    <title>Avis de recherche</title>
+    <title>Opsporingsberichten</title>
   </head>
   <body>
-    <div class="container">        
+    <div class="container">
         <h1 class=""><img id="logo" src="i/logoF.png" /></h1>
         <h2>Avis de recherche</h2>
-        
-        <div id="g-recaptcha-error" class="alert alert-danger" role="alert">
-        Êtes vous bien un humain? Vérifiez le captcha, s'il vous plaît?
-        </div>
-        
-        <div id="email-error" class="alert alert-danger" role="alert">
-            Votre adresse e-mail doit contenir "@" et ".".
-        </div>
         
         <form action="https://action.spike.email/103951/Subscriptions/Subscribe" id="spkForm" method="post" onSubmit="return submitUserForm();">
             <input name="subscription" value="624096ad-6a35-4f57-81cc-fb0fddd80a43" type="hidden" />
             <input name="callbackurl" value="https://fedpolbelgium.github.io/mailingforms/avisderecherche-subscribed.html" type='hidden' />
             <input name="metadata.FormUrl" id="FormUrl" type="hidden" value="https://fedpolbelgium.github.io/mailingforms/" />
             <input name="metadata.FormVersion" id="FormVersion" type="hidden" value="1.0" />
-            <input name="metadata.PrivacyUrl" id="PrivacyUrl" type="hidden" value="https://www.politie.be/5998/nl/privacy" />
+            <input name="metadata.PrivacyUrl" id="PrivacyUrl" type="hidden" value="https://www.politie.be/5998/fr/privacy" />
             <input name="metadata.PrivacyVersion" id="PrivacyVersion" type="hidden" value="1.0" />
 
-            <p><label for="emailaddress">E-mail:</label><input name="emailaddress" id="emailaddress" value="" type="text" /></p>
+            <p><label for="emailaddress">E-mail:</label><input name="emailaddress" id="emailaddress" value="" type="text" onkeyup="formCheck();" /></p>
 
-            <div class="g-recaptcha" data-sitekey="6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T" data-callback="verifyCaptcha"></div>
-
+            <div id="captcha"></div>
+            
+            <p><input id="terms" type="checkbox" onchange="formCheck();" /> Oui, je souhaite m'inscrire et j'ai pris connaissance du <a href="https://www.politie.be/5998/fr/privacy" target="_blank" style="font-weight:600">Privacy statement</a> et du <a href="https://www.politie.be/5998/fr/disclaimer" target="_blank" style="font-weight:600">Disclaimer</a>. </p>
+                        
             <!--<p><button id="btnSubmit" type="submit" value="Submit" disabled="disabled">Submit</button></p>-->
-            <p><button id="btnSubmit" type="submit" value="Submit" class="btn btn-primary">Envoyer</button></p>
+            <p><button id="btnSubmit" type="submit" value="getResponse" class="btn btn-primary" disabled="disabled">Envoyer</button></p>
             
             
         </form>        
-    </div>
-      
-      
-      
-    
-        
+    </div>        
     <script>
-        $(document).ready(function(){            
-            $("#emailaddress").keyup(function(){
-                if($("#emailaddress").val().indexOf("@") < 0 || $("#emailaddress").val().indexOf(".") < 0){
-                    $("#email-error").fadeIn(1000);
-                }
-                else {
-                    $("#email-error").fadeOut(1000);  
-                }                    
+        var srcCaptcha = false;
+        var onloadCallback = function() {
+            srcCaptcha = grecaptcha.render('captcha', {
+                'sitekey' : '6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T',
+                'callback' : verifyCallback
             });
+        };
+        
+        var verifyCallback = function(response) {
+            srcCaptcha = true;
+			formCheck();
+        };
+        
+        
+        
+        function formCheck(){
+            var checkBox = document.getElementById("terms").checked;
             
-            $("#btnSubmit").click(function(){
-                    var rcres = grecaptcha.getResponse();
-                      if(rcres.length){
-                        grecaptcha.reset();
-                        $("#g-recaptcha-error").fadeOut(1000);
-                      }else{
-                        event.preventDefault();
-                        $("#g-recaptcha-error").fadeIn(1000);
-                      }              
-            });
-            
-            $("#btnSubmit").mouseover(function(){
-                var rcres = grecaptcha.getResponse();
-                if(rcres.length){
-                    $("#g-recaptcha-error").fadeOut(1000);
-                }
-            });
-        });
+            if(document.getElementById("emailaddress").value.indexOf("@") > -1 && document.getElementById("emailaddress").value.indexOf(".") > -1 && checkBox == true && srcCaptcha == true) document.getElementById("btnSubmit").disabled = false;
+            else document.getElementById("btnSubmit").disabled = true;
+        }
     </script>
 
     <!-- Optional JavaScript -->
