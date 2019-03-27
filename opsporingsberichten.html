@@ -79,11 +79,11 @@
             <input name="metadata.PrivacyUrl" id="PrivacyUrl" type="hidden" value="https://www.politie.be/5998/nl/privacy" />
             <input name="metadata.PrivacyVersion" id="PrivacyVersion" type="hidden" value="1.0" />
 
-            <p><label for="emailaddress">E-mail:</label><input name="emailaddress" id="emailaddress" value="" type="text" onkeyup="valEmail();" /></p>
+            <p><label for="emailaddress">E-mail:</label><input name="emailaddress" id="emailaddress" value="" type="text" /></p>
 
-            <div class="g-recaptcha" data-sitekey="6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T" data-callback="verifyCaptcha" onclick="valEmail();"></div>
+            <div class="g-recaptcha" data-sitekey="6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T" data-callback="verifyCaptcha"></div>
             
-            <p><input id="terms" type="checkbox" onchange="valEmail();" /> Ja, ik wens mij in te schrijven en ga akkoord <br />met de <a href="https://www.politie.be/5998/nl/privacy" target="_blank" style="font-weight:600">Privacy statement</a> en de <a href="https://www.politie.be/5998/nl/disclaimer" target="_blank" style="font-weight:600">Disclaimer</a>. </p>
+            <p><input id="terms" type="checkbox" /> Ja, ik wens mij in te schrijven en ga akkoord <br />met de <a href="https://www.politie.be/5998/nl/privacy" target="_blank" style="font-weight:600">Privacy statement</a> en de <a href="https://www.politie.be/5998/nl/disclaimer" target="_blank" style="font-weight:600">Disclaimer</a>. </p>
                         
             <!--<p><button id="btnSubmit" type="submit" value="Submit" disabled="disabled">Submit</button></p>-->
             <p><button id="btnSubmit" type="submit" value="Submit" class="btn btn-primary" disabled="disabled">Verzenden</button></p>
@@ -93,7 +93,7 @@
     </div>
       
       
-      <h1>2</h1>
+      <h1>3</h1>
     
         
     <script>
@@ -125,7 +125,15 @@
         
         }
         
-        
+        $(document).ready(function(){
+            $("#emailaddress").keyup(function(){ formCheck(); });
+            $("#terms").change(function(){ formCheck(); });
+                        
+            function formCheck(){
+                if($("#emailaddress").val().indexOf("@") > -1 && $("#emailaddress").val().indexOf(".") > -1 && $("#terms").prop("checked")) $("#btnSubmit").prop('disabled', false);
+                else $("#btnSubmit").prop('disabled', true);
+            }
+        });
             
         
         
