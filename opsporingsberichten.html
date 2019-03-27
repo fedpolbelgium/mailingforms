@@ -93,15 +93,13 @@
     </div>
       
       
-      <h1>6</h1>
+      <h1>7</h1>
     
         
     <script>
-        var verifyCaptcha = function(response) {
-            alert(response);
-        };
         
-        alert(verifyCaptcha);
+        
+        alert(grecaptcha.getResponse());
         
         $(document).ready(function(){
             $("#emailaddress").keyup(function(){ formCheck(); });
