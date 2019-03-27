@@ -61,7 +61,7 @@
   </head>
   <body>
     <div class="container">
-        <h1>9</h1>
+        <h1>10</h1>
         <h1 class=""><img id="logo" src="i/logoN.png" /></h1>
         <h2>Opsporingsberichten</h2>
         
@@ -105,11 +105,18 @@
         var captchaResp = false;
         
         var verifyCallback = function(response) {
-            //if(alert(response);
-            document.getElementById("btnSubmit").disabled = false;
+            captchaResp = true;
+            var checkBox = document.getElementById("terms").checked
+			
+			if(document.getElementById("emailaddress").value.indexOf("@") > -1 && document.getElementById("emailaddress").value.indexOf(".") > -1 && checkBox == true){
+			     document.getElementById("btnSubmit").disabled = false;
+            }
         };
                 
         $(document).ready(function(){
+            
+            alert(captchaResp);
+            
             $("#emailaddress").keyup(function(){ formCheck(); });
             
             $("#terms").change(function(){ formCheck(); });
