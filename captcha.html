@@ -61,7 +61,7 @@
   <body>
     
     <div class="container">
-        <h1>1.0</h1>
+        <h1>1.1</h1>
         <h1 class=""><img id="logo" src="i/logoF.png" /></h1>
         <h2>Avis de recherche</h2>
         
@@ -83,8 +83,8 @@
 
             <p><label for="emailaddress">E-mail:</label><input name="emailaddress" id="emailaddress" value="" type="text" /></p>
 
-            <div class="g-recaptcha" data-sitekey="6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T" data-callback="verifyCaptcha"></div>
-
+            <!--<div class="g-recaptcha" data-sitekey="6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T" data-callback="verifyCaptcha"></div>-->
+            <div id="captcha"></div>
             <!--<p><button id="btnSubmit" type="submit" value="Submit" disabled="disabled">Submit</button></p>-->
             <p><button id="btnSubmit" type="submit" value="Submit" class="btn btn-primary">Envoyer</button></p>
             
@@ -99,6 +99,9 @@
     <script>
         var onloadCallback = function() {
             alert("grecaptcha is ready!");
+            grecaptcha.render('captcha', {
+                'sitekey' : '6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T'
+            });
         };
               
         /*
