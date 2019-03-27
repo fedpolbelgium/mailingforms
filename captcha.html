@@ -29,7 +29,7 @@
         
         h1, h2 { color: #339; }
         
-        div.g-recaptcha { margin: 0 auto; width: 304px; }
+        div#captcha { margin: 0 auto; width: 304px; }
         
         img#logo {
             max-width: 120px;
@@ -98,10 +98,14 @@
         
     <script>
         var onloadCallback = function() {
-            alert("grecaptcha is ready!");
             grecaptcha.render('captcha', {
-                'sitekey' : '6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T'
+                'sitekey' : '6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T',
+                'callback' : verifyCallback
             });
+        };
+        
+        var verifyCallback = function(response) {
+            alert("Response: " + response);
         };
               
         /*
