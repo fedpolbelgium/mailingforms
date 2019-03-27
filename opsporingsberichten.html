@@ -96,39 +96,22 @@
       <h1>3</h1>
     
         
-    <script>
-        function valEmail(){
-			var checkBox = document.getElementById("terms").checked
-            //var rcres = grecaptcha.getResponse(); && rcres.length
-			//var rcres = grecaptcha.getResponse();
-            
-			if(document.getElementById("emailaddress").value.indexOf("@") > -1 && document.getElementById("emailaddress").value.indexOf(".") > -1 && checkBox == true){
-				document.getElementById("btnSubmit").disabled = false;
-                grecaptcha.reset();
-                //$("#g-recaptcha-error").fadeOut(1000);
-			}
-			else document.getElementById("btnSubmit").disabled = true;
-		
-		
-        
-        
-        
-        
-                      //if(rcres.length){
-                    //    grecaptcha.reset();
-                      //  $("#g-recaptcha-error").fadeOut(1000);
-                      //}else{
-                    //    event.preventDefault();
-                      //  $("#g-recaptcha-error").fadeIn(1000);
-                      //}        
-        
-        
-        }
-        
+    <script>        
         $(document).ready(function(){
             $("#emailaddress").keyup(function(){ formCheck(); });
+            
             $("#terms").change(function(){ formCheck(); });
-                        
+            
+            $("#btnSubmit").click(function(){
+                event.preventDefault();
+                
+                var respo;
+                
+                $(".g-recaptcha").getResponse(respo);
+                
+                alert(respo);
+            });
+            
             function formCheck(){
                 if($("#emailaddress").val().indexOf("@") > -1 && $("#emailaddress").val().indexOf(".") > -1 && $("#terms").prop("checked")) $("#btnSubmit").prop('disabled', false);
                 else $("#btnSubmit").prop('disabled', true);
