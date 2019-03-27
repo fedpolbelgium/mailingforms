@@ -93,12 +93,14 @@
     </div>
       
       
-      <h1>4</h1>
+      <h1>5</h1>
     
         
     <script>
-        var rcres = grecaptcha.getResponse();
-        alert(rcres);
+        var verifyCaptcha = function(response) {
+            alert(response);
+        };
+        
         
         $(document).ready(function(){
             $("#emailaddress").keyup(function(){ formCheck(); });
