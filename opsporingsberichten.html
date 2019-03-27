@@ -96,7 +96,10 @@
       <h1>4</h1>
     
         
-    <script>        
+    <script>
+        var rcres = grecaptcha.getResponse();
+        alert(rcres);
+        
         $(document).ready(function(){
             $("#emailaddress").keyup(function(){ formCheck(); });
             
@@ -105,11 +108,7 @@
             $("#btnSubmit").click(function(){
                 event.preventDefault();
                 
-                var respo;
                 
-                $(".g-recaptcha").getResponse(respo);
-                
-                alert(respo);
             });
             
             function formCheck(){
