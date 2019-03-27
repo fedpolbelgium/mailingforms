@@ -61,7 +61,7 @@
   </head>
   <body>
     <div class="container">
-        <h1>7</h1>
+        <h1>8</h1>
         <h1 class=""><img id="logo" src="i/logoN.png" /></h1>
         <h2>Opsporingsberichten</h2>
         
@@ -94,7 +94,8 @@
         </form>        
     </div>        
     <script>
-        var srcCaptcha;
+        $(document).ready(function(){
+            var srcCaptcha;
         var onloadCallback = function() {
             srcCaptcha = grecaptcha.render('captcha', {
                 'sitekey' : '6Lep1ZkUAAAAAHXPV_dKx-n4R3MIPzUUOYO3_K-T',
@@ -105,13 +106,15 @@
         var captchaResp = false;
         
         var verifyCallback = function(response) {
-            alert(response);
+            //if(alert(response);
+            $("#btnSubmit").prop('disabled', false);
         };
-                
-        $(document).ready(function(){
-            $("#emailaddress").keyup(function(){ formCheck(""); });
             
-            $("#terms").change(function(){ formCheck(""); });
+            
+            
+            $("#emailaddress").keyup(function(){ formCheck(); });
+            
+            $("#terms").change(function(){ formCheck(); });
             
             $("#btnSubmit").click(function(){
                 event.preventDefault();
@@ -119,7 +122,7 @@
                 
             });
             
-            function formCheck(response){
+            function formCheck(){
                 if($("#emailaddress").val().indexOf("@") > -1 && $("#emailaddress").val().indexOf(".") > -1 && $("#terms").prop("checked")) $("#btnSubmit").prop('disabled', false);
                 else $("#btnSubmit").prop('disabled', true);
             }
