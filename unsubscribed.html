@@ -1,19 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
-
-<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>
-	Inschrijving GPINews
-</title><link rel="stylesheet" type="text/css" href="/sites/measuremail/SiteAssets/style.css" /><meta http-equiv="X-UA-Compatible" content="IE=10" /></head>
-
-<body style="background-color: #339;">	
-	<div id="wrapper" style="background-color: white; max-width: 750px; margin: 35px auto; border-radius: 2em; padding: 2em; font-family: Calibri, Sans serif;">
-		<img src="i/logoN.png" style="max-width: 275px; margin-right: 25px;" /><img src="i/logoF.png" style="max-width: 275px;" />
-		<h1 style="color: #339;">Nieuwsbrief / Newsletter</h1>
+    <style>
+        body {
+            background-color: #339;
+        }
+        
+        div.container {
+            background-color: white;
+            border-radius: 2em;
+            margin-top: 8em;
+            padding: 2em 0 2em 0;
+        }
+        
+        div.container h2, p, div, img {
+            margin: 25px 0 35px 0;
+        }
+        
+        h1, h2, p { text-align: center; }
+        
+        h1, h2 { color: #339; }
+        
+        div.g-recaptcha { margin: 0 auto; width: 304px; }
+        
+        img#logo {
+            max-width: 120px;
+        }
+        
+        label {
+            font-weight: 500;
+            margin-right: 10px;
+        }
+        
+        button#btnSubmit {
+            background-color: #339;
+            border-color: #339;
+            font-weight: 500;
+            width: 12em;
+        }
+        
+        input#emailaddress { width: 15em; }
+        
+        /*
+        div#g-recaptcha-error, div#email-error { display: none; }
+        */
+        
+        div#g-recaptcha-error, div#email-error { display: none; margin: 10px auto; width: 30em; }
+        
+        span#subscribed { font-size: 1.4em; font-weight: 500; }
+    </style>
+      
+    <title>Avis de recherche</title>
+  </head>
+  <body>
+    <div class="container">        
+        <h1 class=""><img id="logo" src="i/logoF.png" /></h1>
+        <h1 style="color: #339;">Nieuwsbrief / Newsletter</h1>
 		<h2>U bent uitgeschreven.</h2>
 		<h2>Vous êtes désincrit.</h2>
-	</div>
-</body>
-
+        
+    </div>
+      
+      
+      
+    
+        
+    
+  </body>
 </html>
